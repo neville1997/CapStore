@@ -48,11 +48,11 @@ public class JspController {
 			map.addAttribute("customer", cus);
 			return "signUpPage";
 		}
-RestTemplate restTemplate = new RestTemplate();
+			RestTemplate restTemplate = new RestTemplate();
 		
-		Customers message = restTemplate.postForObject("http://localhost:9090/signUpCustomer",cus, Customers.class);
-		 map.addAttribute("custDetails", message);
-		 return "customerHomePage";
+			Customers message = restTemplate.postForObject("http://localhost:9090/signUpCustomer",cus, Customers.class);
+			map.addAttribute("custDetails", message);
+			return "customerHomePage";
 		 
 	}
 	
@@ -73,8 +73,8 @@ RestTemplate restTemplate = new RestTemplate();
 		RestTemplate restTemplate = new RestTemplate();
 		
 		Admin message = restTemplate.postForObject("http://localhost:9090/loginAdmin",admin, Admin.class);
-		 map.addAttribute("adminDetails", message);
-		 return "adminHomePage";
+		map.addAttribute("adminDetails", message);
+		return "adminHomePage";
 	}
 	@RequestMapping("/customerlogincheck")
 	public String  customerLoginCheck(ModelMap map,@ModelAttribute("customer") Customers customer){
@@ -83,22 +83,43 @@ RestTemplate restTemplate = new RestTemplate();
 		System.out.println("**insiode jsp controller");
 		Customers obj = restTemplate.postForObject("http://localhost:9090/loginCustomer",customer, Customers.class);
 		System.out.println("after Central***** check JspHandler***"+obj.getCustomerName());
-		 map.addAttribute("custDetails", obj);
-		 return "customerHomePage";
+		map.addAttribute("custDetails", obj);
+		return "customerHomePage";
 	}
 	@RequestMapping("/homePage")
 	public String showHomePage(ModelMap map, @ModelAttribute("customer") Customers cus){
-		System.out.println("insode himepage");
+		System.out.println("inside himepage");
+		RestTemplate restTemplate = new RestTemplate();
 		map.addAttribute("customer", cus);
 		return "customerHomePage";
 	}
 	
 	
 	@RequestMapping("/addCoupons")
-	public String addCouponPage(ModelMap map, @ModelAttribute("cart") Carts cart){
+	public String addCouponPage(ModelMap map, @ModelAttribute("cart") Carts carts){
 		System.out.println("Inside add coupons");
+		RestTemplate restTemplate = new RestTemplate();
+		map.addAttribute("cartList, carts");
+		return "addCoupons";
+	}
+	
+	@RequestMapping("/fillOrderDetails")
+	public String fillOrderDetails(ModelMap map, @ModelAttribute("cart") Carts carts){
+		System.out.println("Inside insert order details");
+		RestTemplate restTemplate = new RestTemplate();
 		map.addAttribute("cartList, carts");
 		return "fillOrderDetails";
+	}
+	
+	@RequestMapping("/generateInvoice")
+	public String generateInvoice(ModelMap map, 
+			@ModelAttribute("customerorders") CustomerOrders customerorders,
+			@ModelAttribute("orderentries") OrderEntries orderentries){
+		System.out.println("Inside generate invoice");
+		RestTemplate restTemplate = new RestTemplate();
+		map.addAttribute("customerOrderList, customerorders");
+		map.addAttribute("orderEntryList, orderentries");
+		return "viewOrder";
 	}
 	
 	@ModelAttribute("admin")
