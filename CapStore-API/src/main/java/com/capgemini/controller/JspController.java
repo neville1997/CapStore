@@ -7,12 +7,13 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.capgemini.dto.Admin;
+import com.capgemini.dto.Carts;
+import com.capgemini.dto.CustomerOrders;
 import com.capgemini.dto.Customers;
+import com.capgemini.dto.OrderEntries;
 
 
 @Controller
@@ -92,19 +93,41 @@ RestTemplate restTemplate = new RestTemplate();
 		return "customerHomePage";
 	}
 	
+	@RequestMapping("/viewCart")
+	public String viewCartPage(ModelMap map, @ModelAttribute("cart") Carts cart){
+		System.out.println("Inside View Cart");
+		map.addAttribute("cart", cart);
+		return "viewCart";
+	}
+	
 	
 	@ModelAttribute("admin")
 	Admin getCar() {
 		Admin ac = new Admin();
-		
 		return ac;
 	}
+	
 	@ModelAttribute("customer")
 	Customers getCustomer() {
 		Customers ac = new Customers();
-		
 		return ac;
 	}
 	
+	@ModelAttribute("cart")
+	Carts getCart(){
+		Carts ca = new Carts();
+		return ca;
+	}
 	
+	@ModelAttribute("customerorder")
+	CustomerOrders getCustomerOrder(){
+		CustomerOrders co = new CustomerOrders();
+		return co;
+	}
+	
+	@ModelAttribute("orderentries")
+	OrderEntries getOrderEntries(){
+		OrderEntries oe = new OrderEntries();
+		return oe;
+	}
 }
