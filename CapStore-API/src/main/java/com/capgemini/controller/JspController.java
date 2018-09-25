@@ -93,13 +93,13 @@ RestTemplate restTemplate = new RestTemplate();
 		return "customerHomePage";
 	}
 	
-	@RequestMapping("/viewCart")
-	public String viewCartPage(ModelMap map, @ModelAttribute("cart") Carts cart){
-		System.out.println("Inside View Cart");
-		map.addAttribute("cart", cart);
-		return "viewCart";
-	}
 	
+	@RequestMapping("/addCoupons")
+	public String addCouponPage(ModelMap map, @ModelAttribute("cart") Carts cart){
+		System.out.println("Inside add coupons");
+		map.addAttribute("cartList, carts");
+		return "fillOrderDetails";
+	}
 	
 	@ModelAttribute("admin")
 	Admin getCar() {

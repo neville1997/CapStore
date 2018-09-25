@@ -52,7 +52,7 @@ public class PaymentDAOLayerImpl implements PaymentDAOLayer{
 			entityManager.close();
 		}
 	}
-//check
+
 	@Override
 	public CustomerOrders removeCoupon(int couponId, int customerId) {
 		try {
