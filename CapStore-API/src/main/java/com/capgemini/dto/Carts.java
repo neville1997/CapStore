@@ -1,10 +1,35 @@
 package com.capgemini.dto;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.validation.constraints.Min;
+
+import org.hibernate.validator.constraints.NotEmpty;
+
+@Entity
+@Table(name = "carts")
 public class Carts {
+	@Id
+	@Column(name="cart_id")
+	@NotEmpty(message="Field cannot be empty") 
 	private int serialNumber;
+
+	@Column(name="quantity")
+	@Min(value=0, message="Quantity must be positive")
 	private int quantity;
+	
+	@Column(name="product_id")
+	@NotEmpty(message="Field cannot be empty") 
 	private int productId;
+	
+	@Column(name="merchant_id")
+	@NotEmpty(message="Field cannot be empty") 
 	private int merchantId;
+	
+	@Column(name="customer_id")
+	@NotEmpty(message="Field cannot be empty") 
 	private int customerId;
 	
 	public int getSerialNumber() {

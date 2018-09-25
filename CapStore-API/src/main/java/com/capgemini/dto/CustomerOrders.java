@@ -2,12 +2,40 @@ package com.capgemini.dto;
 
 import java.sql.Timestamp;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.validation.constraints.Min;
+
+import org.hibernate.validator.constraints.NotEmpty;
+
+@Entity
+@Table(name = "customer_orders")
 public class CustomerOrders {
+	
+	@Id
+	@Column(name="order_id")
+	@NotEmpty(message="Field cannot be empty")
 	private int orderId;
+	
+	@Column(name="customer_id")
+	@NotEmpty(message="Field cannot be empty") 
 	private int customerId;
+	
+	@Column(name="coupon_id")
+	@NotEmpty(message="Field cannot be empty") 
 	private int couponId;
+	
+	@Column(name="address_id")
+	@NotEmpty(message="Field cannot be empty") 
 	private int addressId;
+	
+	@Column(name="timestamp")
 	private Timestamp timestamp;
+	
+	@Column(name="order_total")
+	@Min(value=0, message="Total amount must be positive")
 	private double orderTotal;
 	
 	public int getOrderId() {

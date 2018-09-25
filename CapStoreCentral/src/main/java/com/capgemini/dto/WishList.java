@@ -1,9 +1,31 @@
 package com.capgemini.dto;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import org.hibernate.validator.constraints.NotEmpty;
+
+@Entity
+@Table(name = "wishlist")
 public class WishList {
+	
+	@Id
+	@Column(name="wishlist_id")
+	@NotEmpty(message="Field cannot be empty") 
 	private int wishlistId;
+	
+	@Column(name="product_id")
+	@NotEmpty(message="Field cannot be empty") 
 	private int productId;
+	
+	@Column(name="merchant_id")
+	@NotEmpty(message="Field cannot be empty") 
 	private int merchantId;
+	
+	@Column(name="customer_id")
+	@NotEmpty(message="Field cannot be empty") 
 	private int customerId;
 
 	public int getwishlistId() {

@@ -1,10 +1,27 @@
 package com.capgemini.dto;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import org.hibernate.validator.constraints.NotEmpty;
+
+@Entity
+@Table(name = "invoice")
 public class Invoice {
 	
+	@Id
+    @Column(name="transaction_id")
+	@NotEmpty(message="Field cannot be empty") 
 	private int invoiceId;
+	
+    @Column(name="order_id")
+	@NotEmpty(message="Field cannot be empty") 
 	private int orderId;
-	private String status;
+	
+    @Column(name="status")
+    private String status;
 	
 	public int getInvoiceId() {
 		return invoiceId;
